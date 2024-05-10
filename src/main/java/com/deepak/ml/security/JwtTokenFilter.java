@@ -1,5 +1,7 @@
 package com.deepak.ml.security;
 
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.context.annotation.Bean;
  import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +26,7 @@ import static org.springframework.util.StringUtils.isEmpty;
 @Component
 public class JwtTokenFilter extends OncePerRequestFilter {
 
+   // @Autowired
     private final JwtTokenUtil jwtTokenUtil;
     private final UserRepository userRepo;
 

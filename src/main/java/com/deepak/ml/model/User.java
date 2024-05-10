@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.Entity;
@@ -20,7 +18,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -56,7 +54,7 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@NotBlank
+	@NotNull
 	@Size(max = 20)
 	public String getUsername() {
 		return username;
@@ -65,7 +63,7 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	@NotBlank
+	@NotNull
 	@Size(max = 50)
 	@Email
 	public String getEmail() {
@@ -75,7 +73,7 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@NotBlank
+	@NotNull
 	@Size(max = 120)
 	public String getFullName() {
 		return fullName;
@@ -84,7 +82,7 @@ public class User {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	@NotBlank
+	@NotNull
 	@Size(max = 120)
 	public String getPassword() {
 		return password;
@@ -93,7 +91,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@NotBlank
+	@NotNull
 	@CreatedDate
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
@@ -102,7 +100,7 @@ public class User {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-	@NotBlank
+	@NotNull
 	@LastModifiedDate
 	public LocalDateTime getModifiedAt() {
 		return modifiedAt;
@@ -111,7 +109,7 @@ public class User {
 	public void setModifiedAt(LocalDateTime modifiedAt) {
 		this.modifiedAt = modifiedAt;
 	}
-	@NotBlank
+	@NotNull
  	public boolean isEnabled() {
 		return enabled;
 	}
@@ -119,7 +117,7 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "USER_ROLES", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	public Set<Role> getRoles() {
 		return roles;
